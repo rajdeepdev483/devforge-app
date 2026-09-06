@@ -24,6 +24,12 @@ import {
 
 const EMAIL = "rajdeepsinghofficial08@gmail.com";
 
+// Replace this with your real WhatsApp number: country code + number, no +, spaces, or dashes.
+// Example for India: "919999999999"
+const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+const WHATSAPP_MESSAGE = "Hi! I saw your DevForge site and wanted to talk about a project.";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 // Replace this with your real Formspree endpoint (formspree.io -> new form -> copy the endpoint URL).
 // Until then the form will show a friendly error instead of actually sending.
 const FORM_ENDPOINT = "https://formspree.io/f/xwlknlyo";
@@ -356,22 +362,31 @@ export default function DevForgeSite() {
         </a>
         <div className="df-footer-socials">
           <a
-  href="https://github.com/rajdeepdev483"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="GitHub"
->
-  <Github size={16} />
-</a>
+            href="https://github.com/rajdeepdev483"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <Github size={16} />
+          </a>
 
-<a
-  href="https://www.linkedin.com/in/rajdeep-singh-4458a53b5/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="LinkedIn"
->
-  <Linkedin size={16} />
-</a>
+          <a
+            href="https://www.linkedin.com/in/rajdeep-singh-4458a53b5/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={16} />
+          </a>
+
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle size={16} />
+          </a>
         </div>
       </footer>
 
@@ -382,6 +397,16 @@ export default function DevForgeSite() {
       >
         <ArrowUp size={16} />
       </button>
+
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="df-whatsapp-fab"
+        aria-label="Contact on WhatsApp"
+      >
+        <MessageCircle size={22} />
+      </a>
     </div>
   );
 }
@@ -616,6 +641,13 @@ function ContactSection({ scrollRef }) {
           {copied ? <Check size={13} /> : <Copy size={13} />}
         </button>
       </div>
+
+      <div className="df-contact-alt">
+        <MessageCircle size={14} />
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+          Message me on WhatsApp
+        </a>
+      </div>
     </section>
   );
 }
@@ -797,6 +829,28 @@ function GlobalStyles() {
       .df-top-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
       .df-top-btn:hover { border-color: var(--ember); color: var(--ember); }
 
+      /* ---- WhatsApp floating button ---- */
+      .df-whatsapp-fab {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #25D366;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+        z-index: 30;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .df-whatsapp-fab:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 20px rgba(37,211,102,0.55);
+      }
+
       /* ---- Theme toggle & light theme ---- */
       .df-theme-toggle { position: fixed; top: 24px; right: 32px; z-index: 40; width: 36px; height: 36px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); color: var(--paper); display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
       .df-theme-toggle:hover { border-color: var(--ember); color: var(--ember); }
@@ -856,6 +910,7 @@ function GlobalStyles() {
         .df-pillar-grid, .df-work-grid, .df-pricing-grid { grid-template-columns: 1fr; }
         .df-form-row { grid-template-columns: 1fr; }
         .df-top-btn { left: 16px; bottom: 16px; }
+        .df-whatsapp-fab { right: 16px; bottom: 16px; }
         .df-theme-toggle { top: 16px; right: 16px; }
       }
     `}</style>
