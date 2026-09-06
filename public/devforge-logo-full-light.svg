@@ -1,0 +1,38 @@
+<svg width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=IBM+Plex+Sans:wght@500&display=swap');
+      .df-word { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 700; }
+      .df-tag { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 500; }
+    </style>
+    <filter id="df-blur-b" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" />
+    </filter>
+  </defs>
+
+  <!-- icon badge stays dark so the mark reads consistently on any surface -->
+  <g transform="translate(12,20) scale(0.8)">
+    <rect x="0" y="0" width="200" height="200" rx="46" fill="#14171F" />
+    <circle cx="132" cy="66" r="66" fill="#F2622E" opacity="0.10" filter="url(#df-blur-b)" />
+    <g filter="url(#df-blur-b)" opacity="0.55">
+      <circle cx="118" cy="94" r="13" fill="#F2622E" />
+      <circle cx="137" cy="67" r="9" fill="#F2622E" />
+      <circle cx="151" cy="44" r="6" fill="#F2622E" />
+    </g>
+    <rect x="50" y="116" width="100" height="32" rx="7" fill="#ECE8DE" />
+    <rect x="86" y="148" width="28" height="14" rx="3" fill="#ECE8DE" opacity="0.9" />
+    <circle cx="118" cy="94" r="8.5" fill="#F2622E" />
+    <circle cx="137" cy="67" r="6" fill="#F2622E" />
+    <circle cx="151" cy="44" r="3.6" fill="#FA8256" />
+  </g>
+
+  <!-- wordmark: dark ink text for legibility on light backgrounds -->
+  <text x="228" y="122" class="df-word" font-size="72" fill="#14171F">
+    DEV<tspan fill="#F2622E">FORGE</tspan>
+  </text>
+
+  <!-- tagline -->
+  <text x="230" y="156" class="df-tag" font-size="15" letter-spacing="2.5" fill="#6B7280">
+    SOLO WEB DEVELOPMENT SHOP
+  </text>
+</svg>
