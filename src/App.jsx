@@ -25,8 +25,8 @@ import {
 const EMAIL = "rajdeepsinghofficial08@gmail.com";
 
 // Replace this with your real WhatsApp number: country code + number, no +, spaces, or dashes.
-// Example for India: "919999999999"
-const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+// Example for India: "919041974849" 
+const WHATSAPP_NUMBER = "919041974849";
 const WHATSAPP_MESSAGE = "Hi! I saw your DevForge site and wanted to talk about a project.";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
