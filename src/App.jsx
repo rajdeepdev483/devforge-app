@@ -825,33 +825,67 @@ export default function DevForgeSite() {
         </div>
 
         <div className="df-work-grid">
-          <div className="df-work-card">
-            <span className="df-work-tag">
-              Web · Online ordering
-            </span>
+  <div className="df-work-card">
+    <span className="df-work-tag">Web · Online ordering</span>
+    <h3>Pizza Supplier</h3>
+    <p>
+      A full ordering site for a local pizza firm — browsable menu,
+      dine-in / take-away / delivery selection, and online checkout.
+    </p>
+  </div>
 
-            <h3>Pizza Supplier</h3>
+  <div className="df-work-card">
+    <span className="df-work-tag">Web App · Weather</span>
+    <h3>TheWeather</h3>
+    <p>
+      A multi-model weather platform that aggregates live data from
+      ECMWF, NOAA GFS, DWD ICON, and GEM — showing a forecast
+      agreement score so you know how confident to be, plus
+      hyper-local search and hourly/weekly breakdowns.
+    </p>
+    <div className="df-work-links">
+      <a href="https://weather-app-rho-roan-61.vercel.app/" target="_blank" rel="noopener noreferrer">
+        Live site
+      </a>
+      <a href="https://github.com/rajdeepdev483/weather-app" target="_blank" rel="noopener noreferrer">
+        <Github size={13} /> Code
+      </a>
+    </div>
+  </div>
 
-            <p>
-              A full ordering site for a local pizza firm —
-              browsable menu, dine-in / take-away / delivery
-              selection, and online checkout.
-            </p>
-          </div>
+  <div className="df-work-card">
+    <span className="df-work-tag">Web App · Legal / AI</span>
+    <h3>WhatNow</h3>
+    <p>
+      Turns dense legal documents and official notices into clear,
+      step-by-step checklists — parsing PDFs to surface deadlines,
+      fees, and requirements automatically. Built on Next.js with
+      Gemini Flash for processing and Supabase for auth/storage.
+    </p>
+    <div className="df-work-links">
+      <a href="https://github.com/rajdeepdev483/what-now" target="_blank" rel="noopener noreferrer">
+        <Github size={13} /> Code
+      </a>
+    </div>
+  </div>
 
-          <div className="df-work-card df-work-card-placeholder">
-            <span className="df-work-tag">
-              Your project here
-            </span>
-
-            <h3>Next up: your site</h3>
-
-            <p>
-              This slot is waiting for the next client project.
-            </p>
-          </div>
-        </div>
-      </section>
+  <div className="df-work-card">
+    <span className="df-work-tag">Web App · Finance</span>
+    <h3>Hisab</h3>
+    <p>
+      A dual-purpose ledger for informal lending and household
+      budgeting — tracks who owes what, logs partial repayments and
+      interest, categorizes daily expenses, and keeps a clear
+      payment history so nothing gets missed.
+    </p>
+    <div className="df-work-links">
+      <a href="https://github.com/rajdeepdev483/hisab" target="_blank" rel="noopener noreferrer">
+        <Github size={13} /> Code
+      </a>
+    </div>
+  </div>
+</div>
+  </section>
 
       {/* -------------------------------- FAQ ------------------------------- */}
 
@@ -1976,11 +2010,35 @@ function GlobalStyles() {
       /* ---- Work ---- */
 
       .df-work-grid {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-      }
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.df-work-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.df-work-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: none;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.df-work-links a:hover {
+  color: var(--ember);
+}
 
       .df-work-card {
         background: var(--surface);
