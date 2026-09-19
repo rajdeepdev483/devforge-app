@@ -38,6 +38,9 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
 // Replace this with your real Formspree endpoint.
 const FORM_ENDPOINT = "https://formspree.io/f/xwlknlyo";
 
+// Where the "personal projects" link in the Work section points.
+const PORTFOLIO_URL = "https://rajdeepsinghme.vercel.app";
+
 const SECTIONS = [
   { id: "home", num: "01", label: "DevForge" },
   { id: "about", num: "02", label: "About" },
@@ -208,6 +211,37 @@ const FAQS = [
   {
     q: "What happens after the site launches?",
     a: "I stay reachable for fixes and small tweaks. If you need regular updates, we can set up a simple monthly maintenance arrangement.",
+  },
+];
+
+/* -------------------------------------------------------------------------- */
+/*                                 WORK / PROJECTS                            */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Client projects shown in the Work section.
+ * Add a new project by adding another object to this array.
+ * `liveUrl` is optional — leave it out if there is no public site.
+ */
+const PROJECTS = [
+  {
+    tag: "Web + Admin panel · Recruitment",
+    title: "Rise Up Manpower",
+    summary:
+      "A full website and admin panel for a manpower recruitment and staffing agency, built with Next.js and a self-contained SQLite database — no external database server and no paid services needed to run it.",
+    audience:
+      "Made for staffing firms that want their own branded site and a private back office, without paying a monthly fee to a website builder or a recruitment SaaS. Employers and candidates never create an account — they fill in one form, and staff review it in the admin panel.",
+    points: [
+      "Two purpose-built public forms — employer and candidate — with the fields a real agency asks for, including resume and photo uploads.",
+      "Private admin panel to approve submissions into contacts, manage staff with granular permissions, see visitor stats, take backups, and apply updates.",
+      "Themes screen with the live site beside the controls: light/dark mode, device-width preview, and wording edited straight from the preview.",
+      "Photo gallery, moving row of client logos, and a posts feed — all managed from the admin panel, not the code.",
+      "Security built in: scrypt password hashing, signed HttpOnly sessions, brute-force lockout, CSRF protection, and uploaded resumes screened for embedded scripts and macros.",
+      "Privacy-respecting analytics with no IP stored and no tracking cookie, plus /llms.txt and structured data for AI-assisted search.",
+    ],
+    tech: ["Next.js", "TypeScript", "SQLite", "Tailwind CSS"],
+    liveUrl: "https://riseupmanpower.com",
+    codeUrl: "https://github.com/brahmtej2009/riseup-manpower",
   },
 ];
 
@@ -825,67 +859,88 @@ export default function DevForgeSite() {
         </div>
 
         <div className="df-work-grid">
-  <div className="df-work-card">
-    <span className="df-work-tag">Web · Online ordering</span>
-    <h3>Pizza Supplier</h3>
-    <p>
-      A full ordering site for a local pizza firm — browsable menu,
-      dine-in / take-away / delivery selection, and online checkout.
-    </p>
-  </div>
+          {PROJECTS.map((project) => (
+            <article
+              className="df-work-card df-work-card-feature"
+              key={project.title}
+            >
+              <div className="df-work-main">
+                <span className="df-work-tag">
+                  {project.tag}
+                </span>
 
-  <div className="df-work-card">
-    <span className="df-work-tag">Web App · Weather</span>
-    <h3>TheWeather</h3>
-    <p>
-      A multi-model weather platform that aggregates live data from
-      ECMWF, NOAA GFS, DWD ICON, and GEM — showing a forecast
-      agreement score so you know how confident to be, plus
-      hyper-local search and hourly/weekly breakdowns.
-    </p>
-    <div className="df-work-links">
-      <a href="https://weather-app-rho-roan-61.vercel.app/" target="_blank" rel="noopener noreferrer">
-        Live site
-      </a>
-      <a href="https://github.com/rajdeepdev483/weather-app" target="_blank" rel="noopener noreferrer">
-        <Github size={13} /> Code
-      </a>
-    </div>
-  </div>
+                <h3>{project.title}</h3>
 
-  <div className="df-work-card">
-    <span className="df-work-tag">Web App · Legal / AI</span>
-    <h3>WhatNow</h3>
-    <p>
-      Turns dense legal documents and official notices into clear,
-      step-by-step checklists — parsing PDFs to surface deadlines,
-      fees, and requirements automatically. Built on Next.js with
-      Gemini Flash for processing and Supabase for auth/storage.
-    </p>
-    <div className="df-work-links">
-      <a href="https://github.com/rajdeepdev483/what-now" target="_blank" rel="noopener noreferrer">
-        <Github size={13} /> Code
-      </a>
-    </div>
-  </div>
+                <p>{project.summary}</p>
 
-  <div className="df-work-card">
-    <span className="df-work-tag">Web App · Finance</span>
-    <h3>Hisab</h3>
-    <p>
-      A dual-purpose ledger for informal lending and household
-      budgeting — tracks who owes what, logs partial repayments and
-      interest, categorizes daily expenses, and keeps a clear
-      payment history so nothing gets missed.
-    </p>
-    <div className="df-work-links">
-      <a href="https://github.com/rajdeepdev483/hisab" target="_blank" rel="noopener noreferrer">
-        <Github size={13} /> Code
-      </a>
-    </div>
-  </div>
-</div>
-  </section>
+                <p>{project.audience}</p>
+
+                <div className="df-work-tech">
+                  {project.tech.map((t) => (
+                    <span key={t}>{t}</span>
+                  ))}
+                </div>
+
+                {(project.liveUrl || project.codeUrl) && (
+                  <div className="df-work-links">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Live site
+                      </a>
+                    )}
+
+                    {project.codeUrl && (
+                      <a
+                        href={project.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github size={13} /> Code
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <ul className="df-work-points">
+                {project.points.map((point) => (
+                  <li key={point}>
+                    <Check size={14} />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        {/* ---- Personal projects → portfolio ---- */}
+
+        <div className="df-work-more">
+          <div>
+            <h3>Personal projects</h3>
+
+            <p>
+              Want to see my personal projects? Visit my
+              portfolio website — it has the side projects,
+              experiments, and things I build for myself.
+            </p>
+          </div>
+
+          <a
+            className="df-btn df-btn-ghost"
+            href={PORTFOLIO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            rajdeepsinghme.vercel.app ↗
+          </a>
+        </div>
+      </section>
 
       {/* -------------------------------- FAQ ------------------------------- */}
 
@@ -1506,6 +1561,7 @@ function GlobalStyles() {
         display: inline-flex;
         align-items: center;
         gap: 8px;
+        text-decoration: none;
       }
 
       .df-btn-primary {
@@ -2010,35 +2066,35 @@ function GlobalStyles() {
       /* ---- Work ---- */
 
       .df-work-grid {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-}
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+      }
 
-.df-work-links {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
+      .df-work-links {
+        display: flex;
+        gap: 16px;
+        margin-top: 20px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
 
-.df-work-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-decoration: none;
-  text-transform: none;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
+      .df-work-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: none;
+        font-family: 'IBM Plex Sans', sans-serif;
+      }
 
-.df-work-links a:hover {
-  color: var(--ember);
-}
+      .df-work-links a:hover {
+        color: var(--ember);
+      }
 
       .df-work-card {
         background: var(--surface);
@@ -2082,6 +2138,92 @@ function GlobalStyles() {
         color: var(--muted);
         font-size: 0.92rem;
         margin: 0;
+        text-transform: none;
+        font-family: 'IBM Plex Sans', sans-serif;
+      }
+
+      /* Featured (full-width) project card */
+
+      .df-work-card-feature {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 44px;
+        padding: 34px;
+      }
+
+      .df-work-card-feature h3 {
+        font-size: 1.9rem;
+        margin: 10px 0 14px;
+      }
+
+      .df-work-card-feature .df-work-main p + p {
+        margin-top: 12px;
+      }
+
+      .df-work-points {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-self: center;
+      }
+
+      .df-work-points li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        text-transform: none;
+        font-family: 'IBM Plex Sans', sans-serif;
+      }
+
+      .df-work-points li svg {
+        color: var(--ember);
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+
+      .df-work-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .df-work-tech span {
+        padding: 4px 12px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        font-size: 0.76rem;
+        color: var(--muted);
+      }
+
+      /* Personal projects → portfolio link */
+
+      .df-work-more {
+        margin-top: 44px;
+        padding-top: 32px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .df-work-more h3 {
+        font-size: 1.3rem;
+        margin-bottom: 6px;
+      }
+
+      .df-work-more p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin: 0;
+        max-width: 58ch;
         text-transform: none;
         font-family: 'IBM Plex Sans', sans-serif;
       }
@@ -2577,6 +2719,12 @@ function GlobalStyles() {
         .df-work-grid,
         .df-pricing-grid {
           grid-template-columns: 1fr;
+        }
+
+        .df-work-card-feature {
+          grid-template-columns: 1fr;
+          gap: 26px;
+          padding: 26px;
         }
 
         .df-form-row {
